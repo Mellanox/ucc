@@ -11,7 +11,7 @@
 #include "coll_score/ucc_coll_score.h"
 #include "../../../core/ucc_service_coll.h"
 
-#define UCC_WORLD_TEAM_ID 32768
+#define UCC_WORLD_TEAM_ID 1
 
 static ucc_status_t _dpu_client_oob_allgather(ucc_tl_dpu_team_t *team, int rail, int num_colls)
 {

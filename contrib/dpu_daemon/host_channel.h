@@ -35,7 +35,7 @@
 #define DPU_MIN(a,b) (((a)<(b))?(a):(b))
 #define DPU_MAX(a,b) (((a)>(b))?(a):(b))
 
-#define UCC_WORLD_TEAM_ID 32768
+#define UCC_WORLD_TEAM_ID 1
 
 #ifdef NDEBUG
 #define DPU_LOG(...)
