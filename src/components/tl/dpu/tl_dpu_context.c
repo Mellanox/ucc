@@ -116,29 +116,30 @@ UCC_CLASS_INIT_FUNC(ucc_tl_dpu_context_t,
                 if (strcmp(h, hname) == 0) {
                     for (i = 0; i < 2 * MAX_DPU_COUNT; i++) {
                         memset(dpu_tmp, 0, MAX_DPU_HOST_NAME);
-                        fscanf(fp, "%s", dpu_tmp);
+                        if (fscanf(fp, "%s", dpu_tmp) != EOF) {
 
-                        if(strchr(dpu_tmp, ',') != NULL)
-                        {
-                            last_dpu_found = 1;
-                            /* remove the tail (,) */
-                            memmove(&dpu_tmp[strlen(dpu_tmp) - 1], &dpu_tmp[strlen(dpu_tmp)], 1);
-                        }
-
-                        if(strstr(dpu_tmp, "mlx5_") != NULL) {
-                            memcpy(dpu_hcanames[hca], dpu_tmp, MAX_DPU_HCA_NAME);
-                            hca++;
-                            if(last_dpu_found) { 
-                                break;
+                            if(strchr(dpu_tmp, ',') != NULL)
+                            {
+                                last_dpu_found = 1;
+                                /* remove the tail (,) */
+                                memmove(&dpu_tmp[strlen(dpu_tmp) - 1], &dpu_tmp[strlen(dpu_tmp)], 1);
                             }
-                            continue;
-                        } 
 
-                        memcpy(dpu_hnames[rail], dpu_tmp, MAX_DPU_HOST_NAME);
-                        rail++;                        
+                            if(strstr(dpu_tmp, "mlx5_") != NULL) {
+                                memcpy(dpu_hcanames[hca], dpu_tmp, MAX_DPU_HCA_NAME);
+                                hca++;
+                                if(last_dpu_found) {
+                                    break;
+                                }
+                                continue;
+                            }
 
-                        tl_info(self->super.super.lib, "DPU <%s> found!\n",
-                                dpu_tmp);
+                            memcpy(dpu_hnames[rail], dpu_tmp, MAX_DPU_HOST_NAME);
+                            rail++;
+
+                            tl_info(self->super.super.lib, "DPU <%s> found!\n",
+                                    dpu_tmp);
+                        }
 
                         if(last_dpu_found) { 
                             break;
