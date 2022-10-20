@@ -1,4 +1,4 @@
-#### How to Build ####
+#### How to Build Binary ####
 0. Make sure there is a shared file system available and mounted on all hosts and dpus
 1. Make sure autotools (automake, autoconf, libtool, m4, etc.) are installed
 2. Log in to host, edit build_x86.dpu to provide location to build
@@ -17,7 +17,7 @@
 6. Edit run_omb.sh and run_dpu.sh to correct build locations
 
 
-#### How to Run ####
+#### How to Run Binary ####
 1. Open two terminals, one for Host and one for DPU
 2. ssh to Host and DPU on terminal 1 and 2 respectively
 3. Launch run_dpu.sh script on DPU terminal
@@ -36,6 +36,17 @@ Example:
 #                                           # ./run_dpu.sh
 # ./run_omb.sh
 
+#### How to Build Docker Image ####
+0. Log in to DPU, enter contrib\dpu_daemon\scripts directory.
+1. Run "docker build . -t ucc_daemon:v1"
+
+#### How to RUN Docker Image ####
+1. Open three terminals, one for Host and two for two DPUs
+2. ssh to Host on terminal 1, ssh to DPUs on terminal 2 and 3 respectively
+3. Run "docker run --cap-add=IPC_LOCK --device=/dev/infiniband/uverbs0 --net=host --rm -it ucc_daemon:v1" on two DPU terminals
+4. Wait for the following message to appear:
+DPU daemon: Running with 4 compute threads
+5. Launch run_omb.sh script on Host terminal
 
 #### Notes ####
 1. The provided run scripts are for 2 Nodes with 1 DPU each.
