@@ -192,6 +192,7 @@ static int _dpu_master_spawn_server(dpu_mc_t *mc, char **argv)
         /* Get location for dpu_master */
         char master_cmd[PATH_MAX], server_cmd[PATH_MAX];
         ssize_t count = readlink("/proc/self/exe", master_cmd, PATH_MAX);
+        master_cmd[count] = '\0';
         const char *path;
         if (count != -1) {
             path = dirname(master_cmd);

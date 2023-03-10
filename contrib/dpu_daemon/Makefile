@@ -7,10 +7,10 @@
 # $HEADER$
 #
 
-MPI_DIR=$(HPCX_MPI_DIR)
-UCX_DIR=$(HPCX_UCX_DIR)
-UCC_DIR=/global/scratch/users/sourav/build-arm/ucc
-UCC_SRC=/global/home/users/sourav/workspace/ucc
+MPI_DIR=$(OMPI_DIR)
+#UCX_DIR=$(UCX_DIR)
+#UCC_DIR=/global/scratch/users/sourav/build-arm/ucc
+UCC_SRC=/global/scratch/users/tomislavj/dpu-dev/ucc
 MPICC=$(MPI_DIR)/bin/mpicc
 CC=gcc
 

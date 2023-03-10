@@ -6,11 +6,11 @@ NP=${1:-2}
 # Default 8 worker threads
 NT=${2:-8}
 
-WORKSPACE="/swgwork/souravc/workspace"
+WORKSPACE="/global/scratch/users/tomislavj/dpu-dev"
 hostfile="$PWD/hostfile.dpu"
-MPI_DIR=$HPCX_MPI_DIR
-UCC_DIR="$WORKSPACE/build-arm/ucc"
-DPU_BIN="$WORKSPACE/build-arm/ucc/contrib/dpu_daemon/dpu_master"
+MPI_DIR=$OMPI_DIR
+UCC_DIR="$UCC_DIR"
+DPU_BIN="$WORKSPACE/ucc/contrib/dpu_daemon/dpu_master"
 
 cmd="$MPI_DIR/bin/mpirun --np ${NP} \
      --map-by ppr:1:node \

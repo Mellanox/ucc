@@ -19,12 +19,12 @@ UCX_BRANCH='master'
 UCC_SRC="$WORK_DIR/ucc"
 UCC_DIR="$BUILD_DIR/ucc"
 UCC_URL='https://github.com/Mellanox/ucc.git'
-UCC_BRANCH='dpu-v0.3.x'
+UCC_BRANCH='v0.4.x'
 
 MPI_SRC="$WORK_DIR/ompi"
 MPI_DIR="$BUILD_DIR/ompi"
 MPI_URL='https://github.com/open-mpi/ompi.git'
-MPI_BRANCH='main'
+MPI_BRANCH='v5.0.x'
 
 OMB_SRC="$WORK_DIR/omb"
 OMB_DIR="$BUILD_DIR/omb"
