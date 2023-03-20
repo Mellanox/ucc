@@ -1,11 +1,11 @@
 #### How to Build ####
 0. Make sure there is a shared file system available and mounted on all hosts and dpus
 1. Make sure autotools (automake, autoconf, libtool, m4, etc.) are installed
-2. Log in to host, edit build_x86.dpu to provide location to build
+2. Log in to host, edit ./config.sh to provide location to build
    This script will download and build UCX, UCC, OpenMPI, and OSU MPI Benchmarks
-3. Run ./build_x86.sh , look out for errors during build process
-4. Log in to DPU, edit build_arm.sh to correct location to build
-5. Run ./build_arm.sh , look out for errors during build process
+3. Run ./run.sh download, look out for errors during clone process
+4. Run ./run.sh build on the host side and on the dpu side, 
+   look out for errors during build process
 
 
 #### Prerequisites ####
@@ -20,7 +20,7 @@
 #### How to Run ####
 1. Open two terminals, one for Host and one for DPU
 2. ssh to Host and DPU on terminal 1 and 2 respectively
-3. Launch run_dpu.sh script on DPU terminal
+3. Launch run.sh run_dpu script on DPU terminal
 4. Wait for the following message to appear:
 [1,0]<stdout>:DPU server: Running with 8 worker threads on port 10001
 [1,1]<stdout>:DPU server: Running with 8 worker threads on port 10001
@@ -31,10 +31,10 @@ Example:
 #### HOST ####                              #### DPU ####
 # ssh host-01                               # ssh bf2-01
 # cd /nfs/dpu/scripts                       # cd /nfs/dpu/scripts
-# ./build_x86.sh                            # ./build_arm.sh
-#                                           #
-#                                           # ./run_dpu.sh
-# ./run_omb.sh
+# ARCH="x86" ./run.sh download              # ARCH="dpu"./run.sh build
+# ARCH="x86" ./run.sh build                                          #
+#                                           # ARCH="dpu" ./run.sh run_dpu
+# ARCH="x86" ./run.sh run_omb
 
 
 #### Notes ####

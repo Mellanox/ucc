@@ -1,2 +1,2 @@
-thor001.hpcadvisorycouncil.com thorbf001 mlx5_2:1,
-thor002.hpcadvisorycouncil.com thorbf002 mlx5_2:1,
+ucc-ci-1 192.168.100.2 mlx5_4:1,
+ucc-ci-2 192.168.100.2 mlx5_4:1,
