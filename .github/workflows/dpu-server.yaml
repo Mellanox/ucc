@@ -1,0 +1,48 @@
+name: DPU server CI
+on:
+  workflow_dispatch:
+    branches: ["v0.4.x"]
+  push:
+    branches: ["v0.4.x"]
+  pull_request: 
+    branches: ["v0.4.x"]
+jobs:
+  deployment:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Initialisation runners
+      run: /start init
+    - name: Deployment infrastructure
+      run: /start deploy
+  build_x86:
+    needs: [deployment]
+    runs-on: [self-hosted, linux, x64]  
+    steps:
+    - name: Building on the HOST
+      run: /start build_x86
+  build_dpu:
+    needs: [deployment]
+    runs-on: [self-hosted, linux, x64]  
+    steps:
+    - name: Building on the DPU
+      run: /start build_arm
+  run_dpu:
+    needs: [build_dpu, build_x86]
+    runs-on: [self-hosted, linux, x64]  
+    steps:
+    - name: Running DPU server
+      run: /start run_dpu
+  run_omb:
+    needs: [build_dpu, build_x86]
+    runs-on: [self-hosted, linux, x64]  
+    steps:
+    - name: Running tests
+      run: /start run_omb
+  clean:
+    if: ${{ always() }}
+    needs: [build_dpu, build_x86, run_omb, run_dpu]
+    runs-on: [self-hosted, linux, x64]  
+    steps:
+    - name: Cleaning
+      run: /start clean

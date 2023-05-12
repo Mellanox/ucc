@@ -6,12 +6,7 @@
 #
 # $HEADER$
 #
-
-MPI_DIR=$(OMPI_DIR)
-#UCX_DIR=$(UCX_DIR)
-#UCC_DIR=/global/scratch/users/sourav/build-arm/ucc
-UCC_SRC=/global/scratch/users/tomislavj/dpu-dev/ucc
-MPICC=$(MPI_DIR)/bin/mpicc
+MPICC=$(OMPI_DIR)/bin/mpicc
 CC=gcc
 
 DBGOPTS = -O0 -g
