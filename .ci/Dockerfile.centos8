@@ -6,7 +6,7 @@ COPY . ${SRC_DIR}/ucc
 
 #==============================================================================
 # Build UCC
-RUN ${SRC_DIR}/ucc/.ci/scripts/build_ucc.sh
+RUN ${SRC_DIR}/ucc/.ci/scripts/build_ucc.sh 
 #==============================================================================
 # Install torch_ucc (UCC version) python module and build a wheel package
 RUN ${SRC_DIR}/ucc/.ci/scripts/install_torch_ucc.sh
@@ -14,3 +14,4 @@ RUN ${SRC_DIR}/ucc/.ci/scripts/install_torch_ucc.sh
 RUN groupadd -g 11429 swx-jenkins
 RUN adduser --no-create-home --uid 6213 --gid 11429 --home /labhome/swx-jenkins swx-jenkins
 #==============================================================================
+USER swx-jenkins
